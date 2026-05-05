@@ -33,9 +33,10 @@ st.dataframe(df_filtrado)
 # COMPARAÇÃO DE DEPUTADOS FEDERAIS
 st.title('COMPARAÇÃO DE DEPUTADOS FEDERAIS')
 
-st.subheader("Lista de Deputados")
-
-st.dataframe(df_filtrado[["nome", "partido", "uf", "sexo"]])
+comparar = st.multiselect(
+    "Selecione deputados para comparar:",
+    df["nome"].dropna().unique()
+)
 
 if len(comparar) > 5:
     st.warning("Selecione no máximo 5 deputados.")
