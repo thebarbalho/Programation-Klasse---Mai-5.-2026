@@ -11,7 +11,7 @@ st.dataframe(df)
 st.title('SEARCH DE DEPUTADOS FEDERAIS - 2022')
 nome = st.text_input("Digite o nome do deputado:")
 partidos = st.multiselect("Selecione o partido:", df["partido"].unique())
-uf = st.multiselect("Selecione o estado (UF):", df["uf"].unique())
+ufs = st.multiselect("Selecione o estado (UF):", df["uf"].unique())
 sexo = st.selectbox("Selecione o sexo:", ["Todos", "M", "F"])
 
 df_filtrado = df.copy()
@@ -21,7 +21,7 @@ if nome:
 if partidos:
     df_filtrado = df_filtrado[df_filtrado["partido"].isin(partidos)]
 
-if uf:
+if ufs:
     df_filtrado = df_filtrado[df_filtrado["uf"].isin(ufs)]
 
 if sexo != "Todos":
