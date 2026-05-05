@@ -11,8 +11,24 @@ st.dataframe(df)
 st.title('SEARCH DE DEPUTADOS FEDERAIS - 2022')
 nome = st.text_input("Digite o nome do deputado:")
 partidos = st.multiselect("Selecione o partido:", df["partido"].unique())
-ufs = st.multiselect("Selecione o estado (UF):", df["uf"].unique())
+uf = st.multiselect("Selecione o estado (UF):", df["uf"].unique())
 sexo = st.selectbox("Selecione o sexo:", ["Todos", "M", "F"])
+
+df_filtrado = df.copy()
+if nome:
+    df_filtrado = df_filtrado[df_filtrado["nome"].str.contains(nome, case=False)]
+
+if partidos:
+    df_filtrado = df_filtrado[df_filtrado["partido"].isin(partidos)]
+
+if uf:
+    df_filtrado = df_filtrado[df_filtrado["uf"].isin(ufs)]
+
+if sexo != "Todos":
+    df_filtrado = df_filtrado[df_filtrado["sexo"] == sexo]
+
+st.write(f"Resultados encontrados: {len(df_filtrado)}")
+st.dataframe(df_filtrado)
 
 # COMPARAÇÃO DE DEPUTADOS FEDERAIS
 st.title('COMPARAÇÃO DE DEPUTADOS FEDERAIS')
