@@ -23,7 +23,7 @@ st.title('COMPARAÇÃO DE DEPUTADOS FEDERAIS')
 deputado1_name = st.selectbox("Deputado 1", list(deputados.keys()))
 deputado2_name = st.selectbox("Deputado 2", list(deputados.keys()))
 
-if.st.button("Comparar deputados"):
+if st.button("Comparar deputados"):
 
   if deputado1_name == deputado2_name:        
         st.warning("Escolha deputados diferentes!")    
