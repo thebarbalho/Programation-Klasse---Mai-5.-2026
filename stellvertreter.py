@@ -37,13 +37,21 @@ st.subheader("Lista de Deputados")
 
 st.dataframe(df_filtrado[["nome", "partido", "uf", "sexo"]])
 
-deputado1_name = st.selectbox("Deputado 1", list(deputados.keys()))
-deputado2_name = st.selectbox("Deputado 2", list(deputados.keys()))
+if len(comparar) > 5:
+    st.warning("Selecione no máximo 5 deputados.")
+else:
+    df_comparacao = df[df["nome"].isin(comparar)]
 
-if st.button("Comparar deputados"):
+    if len(comparar) >= 2:
+        colunas = st.columns(len(comparar))
 
-  if deputado1_name == deputado2_name:        
-        st.warning("Escolha deputados diferentes!")    
-  else:        
-        deputado1 = deputados[deputado1_name]        
-        deputado2 = deputados[deputado2_name]   
+        for i, nome_dep in enumerate(comparar):
+            deputado = df[df["nome"] == nome_dep].iloc[0]
+
+            with colunas[i]:
+                st.subheader(nome_dep)
+                st.write(f"**Partido:** {deputado['partido']}")
+                st.write(f"**UF:** {deputado['uf']}")
+                st.write(f"**Sexo:** {deputado['sexo']}")
+
+        st.subheader("Comparação geral")
