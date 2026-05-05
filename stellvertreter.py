@@ -27,6 +27,6 @@ if st.button("Comparar deputados"):
 
   if deputado1_name == deputado2_name:        
         st.warning("Escolha deputados diferentes!")    
-    else:        
+  else:        
         deputado1 = deputados[deputado1_name]        
         deputado2 = deputados[deputado2_name]   
