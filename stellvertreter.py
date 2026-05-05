@@ -33,6 +33,10 @@ st.dataframe(df_filtrado)
 # COMPARAÇÃO DE DEPUTADOS FEDERAIS
 st.title('COMPARAÇÃO DE DEPUTADOS FEDERAIS')
 
+st.subheader("Lista de Deputados")
+
+st.dataframe(df_filtrado[["nome", "partido", "uf", "sexo"]])
+
 deputado1_name = st.selectbox("Deputado 1", list(deputados.keys()))
 deputado2_name = st.selectbox("Deputado 2", list(deputados.keys()))
 
